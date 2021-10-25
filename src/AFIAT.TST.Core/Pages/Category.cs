@@ -7,7 +7,7 @@ using Abp.Domain.Entities;
 namespace AFIAT.TST.Pages
 {
     [Table("Categories")]
-    public class Category : Entity, IMayHaveTenant
+    public class Category : AuditedEntity, IMayHaveTenant
     {
         public int? TenantId { get; set; }
 

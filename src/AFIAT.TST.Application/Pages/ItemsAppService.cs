@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AFIAT.TST.Collections;
+
+using System;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using Abp.Linq.Extensions;
@@ -21,10 +23,12 @@ namespace AFIAT.TST.Pages
     public class ItemsAppService : TSTAppServiceBase, IItemsAppService
     {
         private readonly IRepository<Item> _itemRepository;
+        private readonly IRepository<Collection, int> _lookup_collectionRepository;
 
-        public ItemsAppService(IRepository<Item> itemRepository)
+        public ItemsAppService(IRepository<Item> itemRepository, IRepository<Collection, int> lookup_collectionRepository)
         {
             _itemRepository = itemRepository;
+            _lookup_collectionRepository = lookup_collectionRepository;
 
         }
 
@@ -32,18 +36,23 @@ namespace AFIAT.TST.Pages
         {
 
             var filteredItems = _itemRepository.GetAll()
+                        .Include(e => e.CollectionFk)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.Title.Contains(input.Filter) || e.Description.Contains(input.Filter) || e.ImageAdress.Contains(input.Filter) || e.VideoAddress.Contains(input.Filter))
                         .WhereIf(!string.IsNullOrWhiteSpace(input.TitleFilter), e => e.Title == input.TitleFilter)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.DescriptionFilter), e => e.Description == input.DescriptionFilter)
                         .WhereIf(input.IsActiveFilter.HasValue && input.IsActiveFilter > -1, e => (input.IsActiveFilter == 1 && e.IsActive) || (input.IsActiveFilter == 0 && !e.IsActive))
                         .WhereIf(!string.IsNullOrWhiteSpace(input.ImageAdressFilter), e => e.ImageAdress == input.ImageAdressFilter)
-                        .WhereIf(!string.IsNullOrWhiteSpace(input.VideoAddressFilter), e => e.VideoAddress == input.VideoAddressFilter);
+                        .WhereIf(!string.IsNullOrWhiteSpace(input.VideoAddressFilter), e => e.VideoAddress == input.VideoAddressFilter)
+                        .WhereIf(!string.IsNullOrWhiteSpace(input.CollectionNameFilter), e => e.CollectionFk != null && e.CollectionFk.Name == input.CollectionNameFilter);
 
             var pagedAndFilteredItems = filteredItems
                 .OrderBy(input.Sorting ?? "id asc")
                 .PageBy(input);
 
             var items = from o in pagedAndFilteredItems
+                        join o1 in _lookup_collectionRepository.GetAll() on o.CollectionId equals o1.Id into j1
+                        from s1 in j1.DefaultIfEmpty()
+
                         select new
                         {
 
@@ -52,7 +61,8 @@ namespace AFIAT.TST.Pages
                             o.IsActive,
                             o.ImageAdress,
                             o.VideoAddress,
-                            Id = o.Id
+                            Id = o.Id,
+                            CollectionName = s1 == null || s1.Name == null ? "" : s1.Name.ToString()
                         };
 
             var totalCount = await filteredItems.CountAsync();
@@ -73,7 +83,8 @@ namespace AFIAT.TST.Pages
                         ImageAdress = o.ImageAdress,
                         VideoAddress = o.VideoAddress,
                         Id = o.Id,
-                    }
+                    },
+                    CollectionName = o.CollectionName
                 };
 
                 results.Add(res);
@@ -92,6 +103,12 @@ namespace AFIAT.TST.Pages
 
             var output = new GetItemForViewDto { Item = ObjectMapper.Map<ItemDto>(item) };
 
+            if (output.Item.CollectionId != null)
+            {
+                var _lookupCollection = await _lookup_collectionRepository.FirstOrDefaultAsync((int)output.Item.CollectionId);
+                output.CollectionName = _lookupCollection?.Name?.ToString();
+            }
+
             return output;
         }
 
@@ -101,6 +118,12 @@ namespace AFIAT.TST.Pages
             var item = await _itemRepository.FirstOrDefaultAsync(input.Id);
 
             var output = new GetItemForEditOutput { Item = ObjectMapper.Map<CreateOrEditItemDto>(item) };
+
+            if (output.Item.CollectionId != null)
+            {
+                var _lookupCollection = await _lookup_collectionRepository.FirstOrDefaultAsync((int)output.Item.CollectionId);
+                output.CollectionName = _lookupCollection?.Name?.ToString();
+            }
 
             return output;
         }
@@ -143,6 +166,36 @@ namespace AFIAT.TST.Pages
         public async Task Delete(EntityDto input)
         {
             await _itemRepository.DeleteAsync(input.Id);
+        }
+
+        [AbpAuthorize(AppPermissions.Pages_Items)]
+        public async Task<PagedResultDto<ItemCollectionLookupTableDto>> GetAllCollectionForLookupTable(GetAllForLookupTableInput input)
+        {
+            var query = _lookup_collectionRepository.GetAll().WhereIf(
+                   !string.IsNullOrWhiteSpace(input.Filter),
+                  e => e.Name != null && e.Name.Contains(input.Filter)
+               );
+
+            var totalCount = await query.CountAsync();
+
+            var collectionList = await query
+                .PageBy(input)
+                .ToListAsync();
+
+            var lookupTableDtoList = new List<ItemCollectionLookupTableDto>();
+            foreach (var collection in collectionList)
+            {
+                lookupTableDtoList.Add(new ItemCollectionLookupTableDto
+                {
+                    Id = collection.Id,
+                    DisplayName = collection.Name?.ToString()
+                });
+            }
+
+            return new PagedResultDto<ItemCollectionLookupTableDto>(
+                totalCount,
+                lookupTableDtoList
+            );
         }
 
     }

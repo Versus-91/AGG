@@ -54,6 +54,8 @@ namespace AFIAT.TST
     {
         public static void CreateMappings(IMapperConfigurationExpression configuration)
         {
+            configuration.CreateMap<CreateOrEditTagDto, Tag>().ReverseMap();
+            configuration.CreateMap<TagDto, Tag>().ReverseMap();
             configuration.CreateMap<CreateOrEditSubCollectionDto, SubCollection>().ReverseMap();
             configuration.CreateMap<SubCollectionDto, SubCollection>().ReverseMap();
             configuration.CreateMap<CreateOrEditCollectionDto, Collection>().ReverseMap();

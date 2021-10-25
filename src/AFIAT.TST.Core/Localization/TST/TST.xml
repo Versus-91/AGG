@@ -1,6 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
   <texts>
+    <text name="Tag">Tag</text>
+    <text name="AFIAT.TST.Pages.Tag">Tag</text>
+    <text name="name">name</text>
+    <text name="TagsHeaderInfo">Tags header info</text>
+    <text name="CreateNewTag">Create new tag</text>
+    <text name="EditTag">Edit tag</text>
+    <text name="DeleteTag">Delete tag</text>
+    <text name="Tags">Tags</text>
     <text name="SubCollections">Sub collections</text>
     <text name="SubCollection">Sub collection</text>
     <text name="AFIAT.TST.SubCollections.SubCollection">SubCollection</text>

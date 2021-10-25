@@ -6,7 +6,7 @@
   "EntityNamePlural": "Items",
   "TableName": "Items",
   "PrimaryKeyType": "int",
-  "BaseClass": "Entity",
+  "BaseClass": "AuditedEntity",
   "EntityHistory": false,
   "AutoMigration": true,
   "UpdateDatabase": true,
@@ -116,7 +116,19 @@
       }
     }
   ],
-  "NavigationProperties": [],
+  "NavigationProperties": [
+    {
+      "Namespace": "AFIAT.TST.Collections",
+      "ForeignEntityName": "Collection",
+      "IdType": "int",
+      "IsNullable": false,
+      "PropertyName": "CollectionId",
+      "DisplayPropertyName": "Name",
+      "DuplicationNumber": 0,
+      "RelationType": "single",
+      "ViewType": "LookupTable"
+    }
+  ],
   "NavigationPropertyOneToManyTables": [],
   "EnumDefinitions": [],
   "DbContext": null

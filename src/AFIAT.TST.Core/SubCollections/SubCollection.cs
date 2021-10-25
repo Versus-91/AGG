@@ -8,7 +8,7 @@ using Abp.Domain.Entities;
 namespace AFIAT.TST.SubCollections
 {
     [Table("SubCollections")]
-    public class SubCollection : Entity, IMayHaveTenant
+    public class SubCollection : AuditedEntity, IMayHaveTenant
     {
         public int? TenantId { get; set; }
 

@@ -4,11 +4,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AFIAT.TST.Pages.Dtos
 {
-    public class GetItemForEditOutput
+    public class GetTagForEditOutput
     {
-        public CreateOrEditItemDto Item { get; set; }
-
-        public string CollectionName { get; set; }
+        public CreateOrEditTagDto Tag { get; set; }
 
     }
 }

@@ -1,12 +1,12 @@
 {
-  "IsRegenerate": false,
+  "IsRegenerate": true,
   "MenuPosition": "main",
   "RelativeNamespace": "Pages",
   "EntityName": "Category",
   "EntityNamePlural": "Categories",
   "TableName": "Categories",
   "PrimaryKeyType": "int",
-  "BaseClass": "Entity",
+  "BaseClass": "AuditedEntity",
   "EntityHistory": false,
   "AutoMigration": true,
   "UpdateDatabase": true,
@@ -61,8 +61,8 @@
     {
       "Name": "IsActive",
       "Type": "bool",
-      "MaxLength": 0,
-      "MinLength": 0,
+      "MaxLength": -1,
+      "MinLength": -1,
       "Range": {
         "IsRangeSet": false,
         "MinimumValue": 0.0,

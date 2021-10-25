@@ -4,14 +4,16 @@ using AFIAT.TST.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AFIAT.TST.Migrations
 {
     [DbContext(typeof(TSTDbContext))]
-    partial class TSTDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211025132127_Added_Tag")]
+    partial class Added_Tag
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -700,9 +702,6 @@ namespace AFIAT.TST.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CollectionId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
@@ -734,8 +733,6 @@ namespace AFIAT.TST.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CollectionId");
 
                     b.HasIndex("TenantId");
 
@@ -2370,17 +2367,6 @@ namespace AFIAT.TST.Migrations
                     b.Navigation("Edition");
 
                     b.Navigation("LastModifierUser");
-                });
-
-            modelBuilder.Entity("AFIAT.TST.Pages.Item", b =>
-                {
-                    b.HasOne("AFIAT.TST.Collections.Collection", "CollectionFk")
-                        .WithMany()
-                        .HasForeignKey("CollectionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CollectionFk");
                 });
 
             modelBuilder.Entity("AFIAT.TST.SubCollections.SubCollection", b =>
