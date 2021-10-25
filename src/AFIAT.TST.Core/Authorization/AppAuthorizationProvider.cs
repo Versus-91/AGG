@@ -29,6 +29,22 @@ namespace AFIAT.TST.Authorization
             //COMMON PERMISSIONS (FOR BOTH OF TENANTS AND HOST)
 
             var pages = context.GetPermissionOrNull(AppPermissions.Pages) ?? context.CreatePermission(AppPermissions.Pages, L("Pages"));
+
+            var collections = pages.CreateChildPermission(AppPermissions.Pages_Collections, L("Collections"));
+            collections.CreateChildPermission(AppPermissions.Pages_Collections_Create, L("CreateNewCollection"));
+            collections.CreateChildPermission(AppPermissions.Pages_Collections_Edit, L("EditCollection"));
+            collections.CreateChildPermission(AppPermissions.Pages_Collections_Delete, L("DeleteCollection"));
+
+            var items = pages.CreateChildPermission(AppPermissions.Pages_Items, L("Items"));
+            items.CreateChildPermission(AppPermissions.Pages_Items_Create, L("CreateNewItem"));
+            items.CreateChildPermission(AppPermissions.Pages_Items_Edit, L("EditItem"));
+            items.CreateChildPermission(AppPermissions.Pages_Items_Delete, L("DeleteItem"));
+
+            var categories = pages.CreateChildPermission(AppPermissions.Pages_Categories, L("Categories"));
+            categories.CreateChildPermission(AppPermissions.Pages_Categories_Create, L("CreateNewCategory"));
+            categories.CreateChildPermission(AppPermissions.Pages_Categories_Edit, L("EditCategory"));
+            categories.CreateChildPermission(AppPermissions.Pages_Categories_Delete, L("DeleteCategory"));
+
             pages.CreateChildPermission(AppPermissions.Pages_DemoUiComponents, L("DemoUiComponents"));
 
             var administration = pages.CreateChildPermission(AppPermissions.Pages_Administration, L("Administration"));

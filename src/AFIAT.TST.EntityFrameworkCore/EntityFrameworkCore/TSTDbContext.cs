@@ -1,4 +1,6 @@
-﻿using Abp.IdentityServer4vNext;
+﻿using AFIAT.TST.Collections;
+using AFIAT.TST.Pages;
+using Abp.IdentityServer4vNext;
 using Abp.Zero.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using AFIAT.TST.Authorization.Delegation;
@@ -16,6 +18,12 @@ namespace AFIAT.TST.EntityFrameworkCore
 {
     public class TSTDbContext : AbpZeroDbContext<Tenant, Role, User, TSTDbContext>, IAbpPersistedGrantDbContext
     {
+        public virtual DbSet<Collection> Collections { get; set; }
+
+        public virtual DbSet<Item> Items { get; set; }
+
+        public virtual DbSet<Category> Categories { get; set; }
+
         /* Define an IDbSet for each entity of the application */
 
         public virtual DbSet<BinaryObject> BinaryObjects { get; set; }
@@ -46,10 +54,22 @@ namespace AFIAT.TST.EntityFrameworkCore
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<BinaryObject>(b =>
+            modelBuilder.Entity<Collection>(c =>
             {
-                b.HasIndex(e => new { e.TenantId });
+                c.HasIndex(e => new { e.TenantId });
             });
+            modelBuilder.Entity<Item>(i =>
+                       {
+                           i.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<Category>(c =>
+                       {
+                           c.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<BinaryObject>(b =>
+                       {
+                           b.HasIndex(e => new { e.TenantId });
+                       });
 
             modelBuilder.Entity<ChatMessage>(b =>
             {

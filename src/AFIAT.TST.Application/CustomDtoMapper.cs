@@ -1,3 +1,7 @@
+﻿using AFIAT.TST.Collections.Dtos;
+using AFIAT.TST.Collections;
+using AFIAT.TST.Pages.Dtos;
+using AFIAT.TST.Pages;
 using Abp.Application.Editions;
 using Abp.Application.Features;
 using Abp.Auditing;
@@ -48,6 +52,12 @@ namespace AFIAT.TST
     {
         public static void CreateMappings(IMapperConfigurationExpression configuration)
         {
+            configuration.CreateMap<CreateOrEditCollectionDto, Collection>().ReverseMap();
+            configuration.CreateMap<CollectionDto, Collection>().ReverseMap();
+            configuration.CreateMap<CreateOrEditItemDto, Item>().ReverseMap();
+            configuration.CreateMap<ItemDto, Item>().ReverseMap();
+            configuration.CreateMap<CreateOrEditCategoryDto, Category>().ReverseMap();
+            configuration.CreateMap<CategoryDto, Category>().ReverseMap();
             //Inputs
             configuration.CreateMap<CheckboxInputType, FeatureInputTypeDto>();
             configuration.CreateMap<SingleLineStringInputType, FeatureInputTypeDto>();
@@ -76,8 +86,6 @@ namespace AFIAT.TST
             configuration.CreateMap<Role, RoleListDto>();
             configuration.CreateMap<UserRole, UserListRoleDto>();
 
-            
-
             //Edition
             configuration.CreateMap<EditionEditDto, SubscribableEdition>().ReverseMap();
             configuration.CreateMap<EditionCreateDto, SubscribableEdition>();
@@ -90,7 +98,6 @@ namespace AFIAT.TST
             configuration.CreateMap<Edition, EditionEditDto>();
             configuration.CreateMap<Edition, SubscribableEdition>();
             configuration.CreateMap<Edition, EditionSelectDto>();
-
 
             //Payment
             configuration.CreateMap<SubscriptionPaymentDto, SubscriptionPayment>().ReverseMap();
@@ -159,7 +166,7 @@ namespace AFIAT.TST
             configuration.CreateMap<DynamicEntityPropertyDto, DynamicEntityProperty>();
 
             configuration.CreateMap<DynamicEntityPropertyValue, DynamicEntityPropertyValueDto>().ReverseMap();
-            
+
             //User Delegations
             configuration.CreateMap<CreateUserDelegationDto, UserDelegation>();
 
