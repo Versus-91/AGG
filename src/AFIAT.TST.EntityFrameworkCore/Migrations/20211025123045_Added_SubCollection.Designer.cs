@@ -4,14 +4,16 @@ using AFIAT.TST.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AFIAT.TST.Migrations
 {
     [DbContext(typeof(TSTDbContext))]
-    partial class TSTDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211025123045_Added_SubCollection")]
+    partial class Added_SubCollection
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

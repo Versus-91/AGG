@@ -30,6 +30,11 @@ namespace AFIAT.TST.Authorization
 
             var pages = context.GetPermissionOrNull(AppPermissions.Pages) ?? context.CreatePermission(AppPermissions.Pages, L("Pages"));
 
+            var subCollections = pages.CreateChildPermission(AppPermissions.Pages_SubCollections, L("SubCollections"));
+            subCollections.CreateChildPermission(AppPermissions.Pages_SubCollections_Create, L("CreateNewSubCollection"));
+            subCollections.CreateChildPermission(AppPermissions.Pages_SubCollections_Edit, L("EditSubCollection"));
+            subCollections.CreateChildPermission(AppPermissions.Pages_SubCollections_Delete, L("DeleteSubCollection"));
+
             var collections = pages.CreateChildPermission(AppPermissions.Pages_Collections, L("Collections"));
             collections.CreateChildPermission(AppPermissions.Pages_Collections_Create, L("CreateNewCollection"));
             collections.CreateChildPermission(AppPermissions.Pages_Collections_Edit, L("EditCollection"));

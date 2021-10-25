@@ -1,6 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
   <texts>
+    <text name="SubCollections">Sub collections</text>
+    <text name="SubCollection">Sub collection</text>
+    <text name="AFIAT.TST.SubCollections.SubCollection">SubCollection</text>
+    <text name="SubCollectionsHeaderInfo">Sub collections header info</text>
+    <text name="CreateNewSubCollection">Create new sub collection</text>
+    <text name="EditSubCollection">Edit sub collection</text>
+    <text name="DeleteSubCollection">Delete sub collection</text>
+    <text name="CollectionName">Collection name</text>
+    <text name="PickCollection">Pick collection</text>
     <text name="Collections">Collections</text>
     <text name="Collection">Collection</text>
     <text name="AFIAT.TST.Collections.Collection">Collection</text>

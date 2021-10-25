@@ -6,6 +6,11 @@
     /// </summary>
     public static class AppPermissions
     {
+        public const string Pages_SubCollections = "Pages.SubCollections";
+        public const string Pages_SubCollections_Create = "Pages.SubCollections.Create";
+        public const string Pages_SubCollections_Edit = "Pages.SubCollections.Edit";
+        public const string Pages_SubCollections_Delete = "Pages.SubCollections.Delete";
+
         public const string Pages_Collections = "Pages.Collections";
         public const string Pages_Collections_Create = "Pages.Collections.Create";
         public const string Pages_Collections_Edit = "Pages.Collections.Edit";

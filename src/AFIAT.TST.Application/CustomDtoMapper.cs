@@ -1,4 +1,6 @@
-﻿using AFIAT.TST.Collections.Dtos;
+﻿using AFIAT.TST.SubCollections.Dtos;
+using AFIAT.TST.SubCollections;
+using AFIAT.TST.Collections.Dtos;
 using AFIAT.TST.Collections;
 using AFIAT.TST.Pages.Dtos;
 using AFIAT.TST.Pages;
@@ -52,6 +54,8 @@ namespace AFIAT.TST
     {
         public static void CreateMappings(IMapperConfigurationExpression configuration)
         {
+            configuration.CreateMap<CreateOrEditSubCollectionDto, SubCollection>().ReverseMap();
+            configuration.CreateMap<SubCollectionDto, SubCollection>().ReverseMap();
             configuration.CreateMap<CreateOrEditCollectionDto, Collection>().ReverseMap();
             configuration.CreateMap<CollectionDto, Collection>().ReverseMap();
             configuration.CreateMap<CreateOrEditItemDto, Item>().ReverseMap();
