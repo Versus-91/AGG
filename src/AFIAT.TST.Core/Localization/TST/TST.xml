@@ -1,6 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
   <texts>
+    <text name="Comment">Comment</text>
+    <text name="AFIAT.TST.Posts.Comment">Comment</text>
+    <text name="Likes">Likes</text>
+    <text name="CommentsHeaderInfo">Comments header info</text>
+    <text name="CreateNewComment">Create new comment</text>
+    <text name="EditComment">Edit comment</text>
+    <text name="DeleteComment">Delete comment</text>
+    <text name="Comments">Comments</text>
     <text name="Posts">Posts</text>
     <text name="Post">Post</text>
     <text name="AFIAT.TST.Posts.Post">Post</text>
