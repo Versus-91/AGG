@@ -1,4 +1,5 @@
-﻿using AFIAT.TST.SubCollections;
+﻿using AFIAT.TST.Posts;
+using AFIAT.TST.SubCollections;
 using AFIAT.TST.Collections;
 using AFIAT.TST.Pages;
 using Abp.IdentityServer4vNext;
@@ -19,6 +20,8 @@ namespace AFIAT.TST.EntityFrameworkCore
 {
     public class TSTDbContext : AbpZeroDbContext<Tenant, Role, User, TSTDbContext>, IAbpPersistedGrantDbContext
     {
+        public virtual DbSet<Post> Posts { get; set; }
+
         public virtual DbSet<Tag> Tags { get; set; }
 
         public virtual DbSet<SubCollection> SubCollections { get; set; }
@@ -59,10 +62,14 @@ namespace AFIAT.TST.EntityFrameworkCore
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Tag>(t =>
+            modelBuilder.Entity<Post>(p =>
             {
-                t.HasIndex(e => new { e.TenantId });
+                p.HasIndex(e => new { e.TenantId });
             });
+            modelBuilder.Entity<Tag>(t =>
+                       {
+                           t.HasIndex(e => new { e.TenantId });
+                       });
             modelBuilder.Entity<Item>(i =>
                        {
                            i.HasIndex(e => new { e.TenantId });

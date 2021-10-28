@@ -1,6 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
   <texts>
+    <text name="Posts">Posts</text>
+    <text name="Post">Post</text>
+    <text name="AFIAT.TST.Posts.Post">Post</text>
+    <text name="PostsHeaderInfo">Posts header info</text>
+    <text name="CreateNewPost">Create new post</text>
+    <text name="EditPost">Edit post</text>
+    <text name="DeletePost">Delete post</text>
+    <text name="ItemTitle">Item title</text>
+    <text name="PickItem">Pick item</text>
     <text name="Tag">Tag</text>
     <text name="AFIAT.TST.Pages.Tag">Tag</text>
     <text name="name">name</text>
