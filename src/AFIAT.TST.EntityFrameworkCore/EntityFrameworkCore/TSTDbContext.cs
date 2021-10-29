@@ -64,10 +64,18 @@ namespace AFIAT.TST.EntityFrameworkCore
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Comment>(c =>
+            modelBuilder.Entity<Tag>(t =>
             {
-                c.HasIndex(e => new { e.TenantId });
+                t.HasIndex(e => new { e.TenantId });
             });
+            modelBuilder.Entity<Post>(p =>
+                       {
+                           p.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<Comment>(c =>
+                       {
+                           c.HasIndex(e => new { e.TenantId });
+                       });
             modelBuilder.Entity<Post>(p =>
                        {
                            p.HasIndex(e => new { e.TenantId });

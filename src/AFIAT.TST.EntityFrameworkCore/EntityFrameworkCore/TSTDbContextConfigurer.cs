@@ -7,12 +7,12 @@ namespace AFIAT.TST.EntityFrameworkCore
     {
         public static void Configure(DbContextOptionsBuilder<TSTDbContext> builder, string connectionString)
         {
-            builder.UseSqlServer(connectionString);
+            builder.UseMySQL(connectionString);
         }
 
         public static void Configure(DbContextOptionsBuilder<TSTDbContext> builder, DbConnection connection)
         {
-            builder.UseSqlServer(connection);
+            builder.UseMySQL(connection);
         }
     }
 }

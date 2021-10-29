@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="~/dist/js/app.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/dist/js/main.css" asp-append-version="true" />
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha512-3M00D/rn8n+2ZVXBO9Hib0GKNpkm8MSUU/e2VNthDyBYxKWG+BftNYYcuEjXlyrSO637tidzMBXfE7sQm0INUg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @await RenderSectionAsync("Styles", false)
 
 
@@ -116,7 +116,7 @@
             <div class="navbar-end">
                 <a href="/pages" class="navbar-item">مرور</a>
                 <div class="navbar-item">
-                    <a href="#" class="button is-primary">
+                    <a href="/account/register" class="button is-primary">
                         <span>ثبت نام </span>
                     </a>
                 </div>
@@ -136,10 +136,7 @@
         abp.security.antiForgery.tokenHeaderName = "Public-X-XSRF-TOKEN";
     </script>
 
-    <!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
-    <script src="~/AbpScripts/GetScripts?_v=@AppTimes.StartupTime.Ticks" type="text/javascript"></script>
 
-    <script src="~/view-resources/Views/_Bundles/frontend-metronic.min.js" asp-append-version="true"></script>
 
     <script type="text/javascript">
         $(function () {

@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
   <texts>
+    <text name="PostTitle">Post title</text>
+    <text name="PickPost">Pick post</text>
     <text name="Comment">Comment</text>
     <text name="AFIAT.TST.Posts.Comment">Comment</text>
     <text name="Likes">Likes</text>
