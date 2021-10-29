@@ -62,7 +62,7 @@
     <div class="container">
         <div class="navbar-brand">
             <a class="navbar-item" href="/">
-                <img class="navbar-logo" src="img/logo/logo.svg" alt="">
+                <img class="navbar-logo" src="/favicon.png" alt="">
             </a>
             <a class="navbar-item is-icon" @@click="toggleMobileSearch()">
                 <i data-feather="search"></i>
@@ -89,7 +89,7 @@
             <div class="navbar-start">
                 <div class="left-brand">
                     <a class="navbar-item" href="/">
-                        <img src="~/favicon.png" alt="">
+                        <img src="/favicon.png" alt="">
                     </a>
                 </div>
             </div>
@@ -124,24 +124,13 @@
         </div>
     </div>
 </nav>
-            @RenderBody()
-
+    @RenderBody()
     @await Html.PartialAsync("~/Views/Layout/_Footer.cshtml")
-
-    <script src="~/view-resources/Views/_Bundles/frontend-libs.min.js" asp-append-version="true"></script>
     <script src="/styles/js/bundle.js" asp-append-version="true"></script>
     <script type="text/javascript">
         abp.localization.defaultSourceName = '@LocalizationSourceName';
         abp.security.antiForgery.tokenCookieName = "Public-XSRF-TOKEN";
         abp.security.antiForgery.tokenHeaderName = "Public-X-XSRF-TOKEN";
-    </script>
-
-
-
-    <script type="text/javascript">
-        $(function () {
-            Layout.init();
-        });
     </script>
 
     @await RenderSectionAsync("Scripts", false)
