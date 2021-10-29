@@ -32,7 +32,7 @@ a:not(.button):not(.navbar-link):not(.navbar-item):not(.social-item):not(.footer
     }
 
 .title {
-    font-family: "Montserrat",sans-serif;
+    font-family: Vazir,"Montserrat",sans-serif;
     color: #283252
 }
 
@@ -128,7 +128,7 @@ hr {
 }
 
 .is-font-alt {
-    font-family: "Montserrat",sans-serif !important
+    font-family: Vazir,"Montserrat",sans-serif !important
 }
 
 .is-weight-300 {
@@ -448,7 +448,7 @@ article, aside, figure, footer, header, hgroup, section {
 }
 
 body, button, input, optgroup, select, textarea {
-    font-family: BlinkMacSystemFont,-apple-system,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue","Helvetica","Arial",sans-serif
+    font-family: BlinkMacSystemFont,-apple-system,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue","Helvetica","Arial",Vazir
 }
 
 code, pre {
@@ -15329,15 +15329,15 @@ a.has-text-bootstrap-dark:hover, a.has-text-bootstrap-dark:focus {
 }
 
 .is-family-primary {
-    font-family: BlinkMacSystemFont,-apple-system,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue","Helvetica","Arial",sans-serif !important
+    font-family: BlinkMacSystemFont,-apple-system,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue","Helvetica","Arial",Vazir !important
 }
 
 .is-family-secondary {
-    font-family: BlinkMacSystemFont,-apple-system,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue","Helvetica","Arial",sans-serif !important
+    font-family: BlinkMacSystemFont,-apple-system,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue","Helvetica","Arial",Vazir !important
 }
 
 .is-family-sans-serif {
-    font-family: BlinkMacSystemFont,-apple-system,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue","Helvetica","Arial",sans-serif !important
+    font-family: BlinkMacSystemFont,-apple-system,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue","Helvetica","Arial",Vazir !important
 }
 
 .is-family-monospace {
@@ -31578,7 +31578,7 @@ a.has-text-bootstrap-dark:hover, a.has-text-bootstrap-dark:focus {
         }
 
         .page-placeholder .placeholder-content h3 {
-            font-family: "Montserrat",sans-serif;
+            font-family: Vazir,"Montserrat",sans-serif;
             font-size: 1.1rem;
             font-weight: 600;
             color: #283252
@@ -31765,7 +31765,7 @@ a.has-text-bootstrap-dark:hover, a.has-text-bootstrap-dark:focus {
                             }
 
                             .navbar.is-centered .navbar-menu .navbar-center .navbar-item.is-search .control .search-results .placeholder-wrap .placeholder-content h3 {
-                                font-family: "Montserrat",sans-serif;
+                                font-family: Vazir,"Montserrat",sans-serif;
                                 font-weight: 600;
                                 color: #283252;
                                 padding: 0
@@ -31825,7 +31825,7 @@ a.has-text-bootstrap-dark:hover, a.has-text-bootstrap-dark:focus {
                                 }
 
                                     .navbar.is-centered .navbar-menu .navbar-center .navbar-item.is-search .control .search-results .search-result .meta span:first-child {
-                                        font-family: "Montserrat",sans-serif;
+                                        font-family: Vazir,"Montserrat",sans-serif;
                                         font-weight: 500;
                                         font-size: .9rem;
                                         color: #283252
@@ -32390,7 +32390,7 @@ a.has-text-bootstrap-dark:hover, a.has-text-bootstrap-dark:focus {
             }
 
         .flex-table .flex-table-item .flex-table-cell.is-bold > span {
-            font-family: "Montserrat",sans-serif;
+            font-family: Vazir,"Montserrat",sans-serif;
             font-size: .9rem;
             font-weight: 600
         }
@@ -32446,7 +32446,7 @@ a.has-text-bootstrap-dark:hover, a.has-text-bootstrap-dark:focus {
             }
 
                 .flex-table .flex-table-item .flex-table-cell.is-user > div .item-name, .flex-table .flex-table-item .flex-table-cell.is-media > div .item-name {
-                    font-family: "Montserrat",sans-serif;
+                    font-family: Vazir,"Montserrat",sans-serif;
                     font-size: .9rem;
                     font-weight: 600;
                     color: #283252
@@ -33383,7 +33383,7 @@ a.has-text-bootstrap-dark:hover, a.has-text-bootstrap-dark:focus {
     }
 
         .profile-wrapper .topbar h3 {
-            font-family: "Montserrat",sans-serif;
+            font-family: Vazir,"Montserrat",sans-serif;
             font-weight: 600;
             font-size: .75rem;
             color: #a2a5b9;
@@ -33398,7 +33398,7 @@ a.has-text-bootstrap-dark:hover, a.has-text-bootstrap-dark:focus {
             }
 
         .profile-wrapper .topbar a {
-            font-family: "Montserrat",sans-serif;
+            font-family: Vazir,"Montserrat",sans-serif;
             font-weight: 600;
             font-size: .75rem;
             color: #a2a5b9;
@@ -33566,7 +33566,7 @@ a.has-text-bootstrap-dark:hover, a.has-text-bootstrap-dark:focus {
 
             .profile-wrapper .profile-card .profile-card-head h3 {
                 font-weight: 500;
-                font-family: "Montserrat",sans-serif;
+                font-family: Vazir,"Montserrat",sans-serif;
                 font-size: 1rem;
                 color: #283252
             }
@@ -33644,7 +33644,7 @@ a.has-text-bootstrap-dark:hover, a.has-text-bootstrap-dark:focus {
                 }
 
         .profile-wrapper .profile-card .profile-card-body .projects .project h3 {
-            font-family: "Montserrat",sans-serif;
+            font-family: Vazir,"Montserrat",sans-serif;
             font-weight: 500;
             font-size: .9rem;
             color: #283252
@@ -33683,7 +33683,7 @@ a.has-text-bootstrap-dark:hover, a.has-text-bootstrap-dark:focus {
         }
 
             .profile-wrapper .profile-card .profile-card-body .skills .skill-box h3 {
-                font-family: "Montserrat",sans-serif;
+                font-family: Vazir,"Montserrat",sans-serif;
                 font-weight: 500;
                 font-size: .9rem;
                 color: #283252;
@@ -33740,7 +33740,7 @@ a.has-text-bootstrap-dark:hover, a.has-text-bootstrap-dark:focus {
             }
 
                 .profile-wrapper .profile-card .profile-card-body .experiences .experience .meta h3, .profile-wrapper .profile-card .profile-card-body .experiences .education .meta h3, .profile-wrapper .profile-card .profile-card-body .educations .experience .meta h3, .profile-wrapper .profile-card .profile-card-body .educations .education .meta h3 {
-                    font-family: "Montserrat",sans-serif;
+                    font-family: Vazir,"Montserrat",sans-serif;
                     font-weight: 500;
                     font-size: .9rem;
                     color: #283252
