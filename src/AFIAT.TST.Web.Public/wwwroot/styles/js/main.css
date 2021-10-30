@@ -33214,8 +33214,8 @@ a.has-text-bootstrap-dark:hover, a.has-text-bootstrap-dark:focus {
         }
 
     .bd-hero-heading .title .icon {
-        margin-left: calc(-1 * (var(--icon-dimensions) + var(--icon-spacing)));
-        margin-right: var(--icon-spacing)
+        margin-right: calc(-1 * (var(--icon-dimensions) + var(--icon-spacing)));
+        margin-left: var(--icon-spacing)
     }
 }
 /*! _section.scss | HR | Css ninja 2020-2021 */

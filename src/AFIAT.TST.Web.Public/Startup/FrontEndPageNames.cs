@@ -2,7 +2,7 @@
 {
     public class FrontEndPageNames
     {
-        public const string Home ="صفحه اول";
+        public const string Home ="وب هوشمندتر";
         public const string Register = "ثبت نام";
         public const string Login = "ورود به حساب";
 

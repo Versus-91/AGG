@@ -1,15 +1,60 @@
 ﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <title>خطا-عدم دسترسی</title>
+
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    @* Fill these meta tags upon your project specification *@
+    <meta content="TST" name="description">
+    <meta content="TST" name="keywords">
+    <meta content="TST" name="author">
+    @* You can enable and fill these lines according to documentation on http://ogp.me/
+        <meta property="og:site_name" content="-CUSTOMER VALUE-">
+        <meta property="og:title" content="-CUSTOMER VALUE-">
+        <meta property="og:description" content="-CUSTOMER VALUE-">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="-CUSTOMER VALUE-">
+        <meta property="og:url" content="-CUSTOMER VALUE-">*@
+
+    <link rel="shortcut icon" href="~/favicon.png">
+
+    <link rel="stylesheet" href="/styles/js/app.css" asp-append-version="true" />
+    <link rel="stylesheet" href="/styles/js/main.css" asp-append-version="true" />
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
+
+
+
+    <script type="text/javascript">
+        @* This is used to get the application's root path from javascript.
+        It's useful if you're running application in a virtual directory under IIS. *@
+        var abp = abp || {}; abp.appPath = '@ApplicationPath';
+    </script>
+
+</head>
+<body class="corporate">
+<div class="section my-5">
+
 <div class="container">
-    <span class="m-error_title">
-        <h1>
+        <h1 class="text-danger title is-1">
             403
         </h1>
-    </span>
-    <p class="m-error_subtitle">
-        @L("UnAuthorizedOperation")
+    <p class="title">
+       خطای دسترسی
     </p>
-    <p class="m-error_description">
-        @L("YouAreNotAuthorizedToPerformThisOperation")<br>
-        <a href="@Url.Action("Index", "Home")" class="link">@L("HomePage")</a>.
+    <p class="subtitle">
+        شما دسترسی لازم برای این عملیات را ندارید<br>
+        <a href="@Url.Action("Index", "Home")" class="button m-3 is-info">صفحه اول</a>.
     </p>
 </div>
+</div>
+
+</body>
+
+</html>

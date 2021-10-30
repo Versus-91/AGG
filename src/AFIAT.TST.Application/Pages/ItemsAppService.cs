@@ -19,7 +19,7 @@ using AFIAT.TST.Storage;
 
 namespace AFIAT.TST.Pages
 {
-    [AbpAuthorize(AppPermissions.Pages_Items)]
+    //[AbpAuthorize(AppPermissions.Pages_Items)]
     public class ItemsAppService : TSTAppServiceBase, IItemsAppService
     {
         private readonly IRepository<Item> _itemRepository;
