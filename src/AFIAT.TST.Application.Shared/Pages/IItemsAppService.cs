@@ -21,5 +21,7 @@ namespace AFIAT.TST.Pages
 
         Task<PagedResultDto<ItemCollectionLookupTableDto>> GetAllCollectionForLookupTable(GetAllForLookupTableInput input);
 
+        Task<GetItemForViewDto> GetPageByTitle(string title);
+
     }
 }

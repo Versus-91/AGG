@@ -31,6 +31,12 @@ namespace AFIAT.TST.Pages
             _lookup_collectionRepository = lookup_collectionRepository;
 
         }
+        public async Task<GetItemForViewDto> GetPageByTitle(string title)
+        {
+            var item = await _itemRepository.GetAll().Where(m => m.Title.Equals(title)).FirstOrDefaultAsync();
+            var output = new GetItemForViewDto { Item = ObjectMapper.Map<ItemDto>(item) };
+            return output;
+        }
 
         public async Task<PagedResultDto<GetItemForViewDto>> GetAll(GetAllItemsInput input)
         {
