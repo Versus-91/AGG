@@ -26,6 +26,7 @@ namespace AFIAT.TST.Web.Public.Startup
     {
         private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly IConfigurationRoot _appConfiguration;
+        private const string DefaultCorsPolicyName = "agahey";
 
         public Startup(IWebHostEnvironment env)
         {
@@ -35,6 +36,7 @@ namespace AFIAT.TST.Web.Public.Startup
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+
             //MVC
             services.AddControllersWithViews(options =>
             {
@@ -48,7 +50,19 @@ namespace AFIAT.TST.Web.Public.Startup
 
             IdentityRegistrar.Register(services);
             services.AddSignalR();
-
+            services.AddCors(options =>
+            {
+                options.AddPolicy(DefaultCorsPolicyName, builder =>
+                {
+                    //App:CorsOrigins in appsettings.json can contain more than one address with splitted by comma.
+                    builder
+                        .WithOrigins("https://agahey-admin.pages.dev")
+                        .SetIsOriginAllowedToAllowWildcardSubdomains()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials();
+                });
+            });
             if (bool.Parse(_appConfiguration["HealthChecks:HealthChecksEnabled"]))
             {
                 services.AddAbpZeroHealthCheck();
@@ -91,6 +105,7 @@ namespace AFIAT.TST.Web.Public.Startup
                 app.UseStatusCodePagesWithRedirects("~/Error?statusCode={0}");
                 app.UseExceptionHandler("/Error");
             }
+            app.UseCors(DefaultCorsPolicyName); //Enable CORS!
 
             app.UseStaticFiles();
             app.UseRouting();
