@@ -9,5 +9,9 @@ namespace AFIAT.TST.Web.Public.Controllers
         {
             return View();
         }
+        public ActionResult About()
+        {
+            return View();
+        }
     }
 }
