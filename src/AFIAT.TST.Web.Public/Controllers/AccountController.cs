@@ -33,11 +33,11 @@ namespace AFIAT.TST.Web.Public.Controllers
             _webUrlService = webUrlService;
             _tenantManager = tenantManager;
         }
-        public async Task<ActionResult> Login()
+        public  ActionResult Login()
         {
             return View();
         }
-        public async Task<ActionResult> Register()
+        public  ActionResult Register()
         {
             return View();
         }

@@ -6,7 +6,16 @@
     align-content: flex-start;
     align-items: flex-start
 }
+html,
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
+    body > footer {
+        margin-top: auto;
+    }
 .simplebar-wrapper {
     overflow: hidden;
     width: inherit;
