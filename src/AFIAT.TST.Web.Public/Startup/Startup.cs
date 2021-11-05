@@ -40,8 +40,8 @@ namespace AFIAT.TST.Web.Public.Startup
             //MVC
             services.AddControllersWithViews(options =>
             {
-                options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
-            }).AddNewtonsoftJson();
+                //options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+            }).AddNewtonsoftJson().AddRazorRuntimeCompilation();
 
             if (bool.Parse(_appConfiguration["KestrelServer:IsEnabled"]))
             {
