@@ -19,6 +19,8 @@ using Microsoft.Extensions.Logging;
 using AFIAT.TST.Configuration;
 using AFIAT.TST.Identity;
 using AFIAT.TST.Web.HealthCheck;
+using AFIAT.TST.Web.Startup;
+using Abp.AspNetZeroCore.Web.Authentication.JwtBearer;
 
 namespace AFIAT.TST.Web.Public.Startup
 {
@@ -48,6 +50,7 @@ namespace AFIAT.TST.Web.Public.Startup
                 ConfigureKestrel(services);
             }
 
+            AuthConfigurer.Configure(services, _appConfiguration);
             IdentityRegistrar.Register(services);
             services.AddSignalR();
             services.AddCors(options =>
@@ -56,7 +59,7 @@ namespace AFIAT.TST.Web.Public.Startup
                 {
                     //App:CorsOrigins in appsettings.json can contain more than one address with splitted by comma.
                     builder
-                        .WithOrigins("https://agahey-admin.pages.dev")
+                        .WithOrigins("https://agahey-admin.pages.dev", "http://localhost:4200")
                         .SetIsOriginAllowedToAllowWildcardSubdomains()
                         .AllowAnyHeader()
                         .AllowAnyMethod()
@@ -111,6 +114,7 @@ namespace AFIAT.TST.Web.Public.Startup
             app.UseRouting();
 
             app.UseAuthentication();
+            app.UseJwtTokenMiddleware();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
