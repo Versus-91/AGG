@@ -53,25 +53,17 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <div class="flex-table-cell" data-th="Department">
-                                        <span class="text-medium" x-text="employee.item.title">Marketing</span>
+                                    <div class="flex-table-cell" data-th="عنوان">
+                                        <span class="text-medium" x-text="employee.item.title">عنوان</span>
                                     </div>
                                     <div class="flex-table-cell" data-th="Location">
                                         <span class="text-light" x-text="employee.location">New York, NY</span>
                                     </div>
                                     <div class="flex-table-cell" data-th="Status">
-                                        <template x-if="employee.status === 'Available'">
-                                            <span class="tag is-success is-rounded" x-text="employee.status">Status</span>
-                                        </template>
-                                        <template x-if="employee.status === 'Away'">
-                                            <span class="tag is-rounded" x-text="employee.status">Status</span>
-                                        </template>
-                                        <template x-if="employee.status === 'Busy'">
-                                            <span class="tag is-danger is-rounded" x-text="employee.status">Status</span>
-                                        </template>
+                                            <span class="tag is-success is-rounded" x-text="employee.item.status">Status</span>                                       
                                     </div>
-                                    <div class="flex-table-cell cell-end" data-th="Actions">
-                                        <a :href="/pages/ + employee.item.title" class="button view-details-button is-pushed-mobile">نمایش</a>
+                                    <div class="flex-table-cell cell-end" data-th="">
+                                        <a :href="/pages/ + employee.item.title" class="button view-details-button is-pushed-mobile mr-3">نمایش</a>
                                     </div>
                                 </div>
                             </template>
