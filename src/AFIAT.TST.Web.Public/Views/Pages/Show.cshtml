@@ -23,13 +23,17 @@
 					    </p>
 					</div>
 				</div>
-				<div class="bd-hero-carbon">
+				@if(!String.IsNullOrWhiteSpace(Model.Item.VideoAddress))
+				{
+						<div class="bd-hero-carbon">
 					<div id="carboncontainer">
 							<span class="icon has-text-success">
 							<i class="fas fa-play fa-2x"></i>
 						</span>
 					</div>
 				</div>
+				}
+			
 			</div>
 		</div>
 	</div>

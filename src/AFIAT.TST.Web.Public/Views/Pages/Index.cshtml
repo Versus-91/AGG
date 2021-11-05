@@ -54,7 +54,7 @@
                                         </div>
                                     </div>
                                     <div class="flex-table-cell" data-th="Department">
-                                        <span class="text-medium" x-text="employee.title">Marketing</span>
+                                        <span class="text-medium" x-text="employee.item.title">Marketing</span>
                                     </div>
                                     <div class="flex-table-cell" data-th="Location">
                                         <span class="text-light" x-text="employee.location">New York, NY</span>
@@ -71,7 +71,7 @@
                                         </template>
                                     </div>
                                     <div class="flex-table-cell cell-end" data-th="Actions">
-                                        <a :href="'employee.html?id=' + employee.id" class="button view-details-button is-pushed-mobile">View</a>
+                                        <a :href="/pages/ + employee.item.title" class="button view-details-button is-pushed-mobile">نمایش</a>
                                     </div>
                                 </div>
                             </template>
