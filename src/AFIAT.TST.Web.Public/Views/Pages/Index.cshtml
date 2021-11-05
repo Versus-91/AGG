@@ -45,7 +45,7 @@
                             <template x-for="(employee, index) in employees" :key="index">
                                 <div class="flex-table-item">
                                     <div class="flex-table-cell is-media is-grow">
-                                        <img class="block is-44x44 is-circle no-m" :src="employee.photo" alt="">
+                                        <img class="block is-44x44 is-circle no-m" :src="employee.image" alt="">
                                         <div>
                                             <span class="item-name dark-inverted" x-text="employee.fullName">John Doe</span>
                                             <span class="item-meta">
@@ -54,7 +54,7 @@
                                         </div>
                                     </div>
                                     <div class="flex-table-cell" data-th="Department">
-                                        <span class="text-medium" x-text="employee.department">Marketing</span>
+                                        <span class="text-medium" x-text="employee.title">Marketing</span>
                                     </div>
                                     <div class="flex-table-cell" data-th="Location">
                                         <span class="text-light" x-text="employee.location">New York, NY</span>

@@ -31610,8 +31610,8 @@ a.has-text-bootstrap-dark:hover, a.has-text-bootstrap-dark:focus {
 
 .navbar {
     height: 70px;
-    -webkit-transition: all .3s;
-    transition: all .3s
+    -webkit-transition: all .1s;
+    transition: all .1s
 }
 
     .navbar.is-fade {

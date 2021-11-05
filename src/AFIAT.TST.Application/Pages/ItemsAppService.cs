@@ -33,7 +33,7 @@ namespace AFIAT.TST.Pages
         }
         public async Task<GetItemForViewDto> GetPageByTitle(string title)
         {
-            var item = await _itemRepository.GetAll().Where(m => m.Title.Equals(title)).FirstOrDefaultAsync();
+            var item = await _itemRepository.FirstOrDefaultAsync(m => m.Title.Equals(title));
             var output = new GetItemForViewDto { Item = ObjectMapper.Map<ItemDto>(item) };
             return output;
         }

@@ -1,4 +1,5 @@
 ﻿@using AFIAT.TST.Web.Public.Startup
+@model AFIAT.TST.Pages.Dtos.GetItemForViewDto
 @{
 	ViewBag.Title = "خانه";
 }
@@ -14,14 +15,12 @@
 						<span class="icon">
 							<i class="fas fa-plug"></i>
 						</span>
-						<p>بیتکوین <strong>Bitcoin</strong></p>
+						<p> <strong>@Model.Item.Title</strong></p>
 					</h1>
 					<div class="subtitle is-4 algolia-lvl1">
-						<p class="is-size-5">بیت‌کوین یک رمزارز و یک نظام پرداخت جهانی[۱] با کارکردهای مشابه پول بدون پشتوانه است. از نظر فنی بیت‌کوین نخستین پول 
-						دیجیتال نامتمرکز است، چرا که بدون بانک مرکزی یا مسئول مرکزی کار می‌کند.[۱] این شبکه همتابه‌همتا است
-						و تراکنش‌ها را مستقیماً و بدون واسطه میان کاربران انجام می‌دهد
-						.[۱]به دلیل محبوبیت بالای بیت کوین برخی به آن لقب پادشاه رمزارزها را
-					</p>
+						<p class="is-size-5">
+							@Model.Item.Description
+					    </p>
 					</div>
 				</div>
 				<div class="bd-hero-carbon">
