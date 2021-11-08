@@ -95,7 +95,7 @@ namespace AFIAT.TST.Web.Public.Controllers
                 return Redirect(returnUrl);
             }
 
-            return RedirectToAction("Index");
+            return Redirect("/");
         }
         private async Task<AbpLoginResult<Tenant, User>> GetLoginResultAsync(string usernameOrEmailAddress, string password, string tenancyName)
         {
@@ -150,7 +150,7 @@ namespace AFIAT.TST.Web.Public.Controllers
             var serverAddress = _webUrlService.GetServerRootAddress(tenancyName);
 
             await _signInManager.SignOutAsync();
-            return Redirect(serverAddress.EnsureEndsWith('/') + "account/logout?returnUrl=" + websiteAddress);
+            return Redirect("/");
         }
 
         private async Task<ActionResult> RedirectToExternalLoginPageAsync()
