@@ -12,6 +12,13 @@ using AFIAT.TST.Identity;
 using AFIAT.TST.MultiTenancy;
 using AFIAT.TST.Url;
 using AFIAT.TST.Web.Controllers;
+using AFIAT.TST.Authorization;
+using AFIAT.TST.Web.Models.Ui;
+using Abp.UI;
+using AFIAT.TST.Authorization.Accounts.Dto;
+using AFIAT.TST.Authorization.Accounts;
+using Abp.Authorization;
+using Abp.Authorization.Users;
 
 namespace AFIAT.TST.Web.Public.Controllers
 {
@@ -21,17 +28,26 @@ namespace AFIAT.TST.Web.Public.Controllers
         private readonly SignInManager _signInManager;
         private readonly IWebUrlService _webUrlService;
         private readonly TenantManager _tenantManager;
+        private readonly LogInManager _logInManager;
+        private readonly IAccountAppService _accountAppService;
+        private readonly AbpLoginResultTypeHelper _abpLoginResultTypeHelper;
 
         public AccountController(
             UserManager userManager,
             SignInManager signInManager,
             IWebUrlService webUrlService,
-            TenantManager tenantManager)
+            TenantManager tenantManager,
+            LogInManager logInManager,
+            IAccountAppService accountAppService,
+            AbpLoginResultTypeHelper abpLoginResultTypeHelper)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _webUrlService = webUrlService;
             _tenantManager = tenantManager;
+            _logInManager = logInManager;
+            _accountAppService = accountAppService;
+            _abpLoginResultTypeHelper = abpLoginResultTypeHelper;
         }
         public  ActionResult Login()
         {
@@ -40,6 +56,58 @@ namespace AFIAT.TST.Web.Public.Controllers
         public  ActionResult Register()
         {
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginModel model, string returnUrl = "")
+        {
+            if (model.TenancyName != null)
+            {
+                var isTenantAvailable = await _accountAppService.IsTenantAvailable(new IsTenantAvailableInput
+                {
+                    TenancyName = model.TenancyName
+                });
+
+                switch (isTenantAvailable.State)
+                {
+                    case TenantAvailabilityState.InActive:
+                        throw new UserFriendlyException(L("TenantIsNotActive", model.TenancyName));
+                    case TenantAvailabilityState.NotFound:
+                        throw new UserFriendlyException(L("ThereIsNoTenantDefinedWithName{0}", model.TenancyName));
+                }
+            }
+
+            var loginResult = await GetLoginResultAsync(model.UserNameOrEmailAddress, model.Password, model.TenancyName);
+
+            if (loginResult.User.ShouldChangePasswordOnNextLogin)
+            {
+                throw new UserFriendlyException(L("RequiresPasswordChange"));
+            }
+
+            var signInResult = await _signInManager.SignInOrTwoFactorAsync(loginResult, model.RememberMe);
+
+            if (signInResult.RequiresTwoFactor)
+            {
+                throw new UserFriendlyException(L("RequiresTwoFactorAuth"));
+            }
+
+            if (!string.IsNullOrEmpty(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+
+            return RedirectToAction("Index");
+        }
+        private async Task<AbpLoginResult<Tenant, User>> GetLoginResultAsync(string usernameOrEmailAddress, string password, string tenancyName)
+        {
+            var loginResult = await _logInManager.LoginAsync(usernameOrEmailAddress, password, tenancyName);
+
+            switch (loginResult.Result)
+            {
+                case AbpLoginResultType.Success:
+                    return loginResult;
+                default:
+                    throw _abpLoginResultTypeHelper.CreateExceptionForFailedLoginAttempt(loginResult.Result, usernameOrEmailAddress, tenancyName);
+            }
         }
         public async Task<ActionResult> LoginUser(string accessToken, string userId, string tenantId = "", string returnUrl = "")
         {
