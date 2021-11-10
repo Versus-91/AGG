@@ -7,92 +7,92 @@
 @inject AppTimes AppTimes
 @inject IAbpAntiForgeryManager AbpAntiForgeryManager
 @{
-    Layout = null;
-    AbpAntiForgeryManager.SetCookie(Context);
+	Layout = null;
+	AbpAntiForgeryManager.SetCookie(Context);
 }
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="utf-8">
-    <title>ورود به حساب</title>
-
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-    @* Fill these meta tags upon your project specification *@
-    <meta content="TST" name="description">
-    <link rel="shortcut icon" href="~/favicon.png">
-
-    <link rel="stylesheet" href="/styles/js/app.css" asp-append-version="true" />
-    <link rel="stylesheet" href="/styles/js/main.css" asp-append-version="true" />
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
-
-
-
-    <script type="text/javascript">
-        @* This is used to get the application's root path from javascript.
-        It's useful if you're running application in a virtual directory under IIS. *@
-        var abp = abp || {}; abp.appPath = '@ApplicationPath';
-    </script>
+ <meta charset="utf-8">
+ <title>ورود به حساب</title>
+ <meta content="width=device-width, initial-scale=1.0" name="viewport">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+ <meta content="TST" name="description">
+ <link rel="shortcut icon" href="~/favicon.png">
+ <link rel="stylesheet" href="/styles/js/app.css" asp-append-version="true" />
+ <link rel="stylesheet" href="/styles/js/main.css" asp-append-version="true" />
+ <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
+ <script type="text/javascript">
+		@* This is used to get the application's root path from javascript.
+			It's useful if you're running application in a virtual directory under IIS. *@
+  var abp = abp || {}; abp.appPath = '@ApplicationPath';
+ </script>
 
 </head>
 <body class="corporate">
-
-<section class="hero is-primary is-fullheight">
+ <section class="hero is-primary is-fullheight">
   <div class="hero-body">
-    <div class="container">
-      <div class="columns is-centered">
-        <div class="column is-5-tablet is-4-desktop is-3-widescreen">
-          <form asp-action="login" method="post" class="box">
-            <div class="field">
-              <label for="" class="label">ایمیل</label>
-              <div class="control has-icons-left">
-                <input name="UserNameOrEmailAddress" type="text" placeholder="e.g. bobsmith@gmail.com" class="input" required>
-                <span class="icon is-small is-left">
-                  <i class="fa fa-envelope"></i>
-                </span>
-              </div>
-            </div>
-            <div class="field">
-              <label for="" class="label">کلمه عبور</label>
-              <div class="control has-icons-left">
-                <input type="password" name="password" placeholder="*******" class="input" required>
-                <span class="icon is-small is-left">
-                  <i class="fa fa-lock"></i>
-                </span>
-              </div>
-            </div>
-            <div class="field">
-              <label for="RememberMe" class="checkbox">
-                <input name="RememberMe" type="checkbox" value="true">
-               به خاطر سپردن
-              </label>
-            </div>
-            <div class="field">
-              <button class="button is-success">
-                ورود
-              </button>
-              <a class="button is-info" href="/account/register">
-                 ثبت نام 
-              </a>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+   <div class="container">
+	<div class="columns is-centered">
+	 <div class="column is-5-tablet is-5-desktop is-4-widescreen">
+	  <div class="box">
+	   <form asp-action="login" method="post">
+		<div class="field">
+		 <label for="" class="label">ایمیل</label>
+		 <div class="control has-icons-left">
+		  <input name="UserNameOrEmailAddress" type="text" placeholder="e.g. bobsmith@gmail.com" class="input" required>
+		  <span class="icon is-small is-left">
+		   <i class="fa fa-envelope"></i>
+		  </span>
+		 </div>
+		</div>
+		<div class="field">
+		 <label for="" class="label">کلمه عبور</label>
+		 <div class="control has-icons-left">
+		  <input type="password" name="password" placeholder="*******" class="input" required>
+		  <span class="icon is-small is-left">
+		   <i class="fa fa-lock"></i>
+		  </span>
+		 </div>
+		</div>
+		<div class="field">
+		 <label for="RememberMe" class="checkbox">
+		  <input name="RememberMe" type="checkbox" value="true">
+		  به خاطر سپردن
+		 </label>
+		</div>
+		<div class="field">
+		 <button class="button is-success is-fullwidth">
+		  ورود
+		 </button>
+		</div>
+		<hr />
+		<p>
+		 <a href="/account/register">
+		  ثبت نام
+		 </a>
+		</p>
+	    <p>
+		 <a href="/">
+		  بازگشت به صفحه اول
+		 </a>
+		</p>
+	   </form>
+	  </div>
+
+
+
+	 </div>
+	</div>
+   </div>
   </div>
-</section>
-
-    <script src="/styles/js/bundle.js" asp-append-version="true"></script>
-
-
-
-
-    <script type="text/javascript">
-        $(function () {
-            Layout.init();
-        });
-    </script>
+ </section>
+ <script src="/styles/js/bundle.js" asp-append-version="true"></script>
+ <script type="text/javascript">
+  $(function () {
+   Layout.init();
+  });
+ </script>
 
 
 </body>
