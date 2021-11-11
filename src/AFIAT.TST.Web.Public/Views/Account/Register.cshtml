@@ -38,58 +38,59 @@
 
     <link rel="stylesheet" href="/styles/js/app.css" asp-append-version="true" />
     <link rel="stylesheet" href="/styles/js/main.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha512-3M00D/rn8n+2ZVXBO9Hib0GKNpkm8MSUU/e2VNthDyBYxKWG+BftNYYcuEjXlyrSO637tidzMBXfE7sQm0INUg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
 
 
 
     <script type="text/javascript">
         @* This is used to get the application's root path from javascript.
-        It's useful if you're running application in a virtual directory under IIS. *@
+            It's useful if you're running application in a virtual directory under IIS. *@
         var abp = abp || {}; abp.appPath = '@ApplicationPath';
     </script>
 
 </head>
 <body class="corporate">
 
-<section class="hero is-primary is-fullheight">
-  <div class="hero-body">
-    <div class="container">
-      <div class="columns is-centered">
-        <div class="column is-5-tablet is-5-desktop is-4-widescreen">
-          <form action="" class="box">
-            <div class="field">
-              <label for="" class="label">ایمیل</label>
-              <div class="control has-icons-left">
-                <input type="text" placeholder="e.g. bobsmith@gmail.com" class="input" required>
-                <span class="icon is-small is-left">
-                  <i class="fa fa-envelope"></i>
-                </span>
-              </div>
+    <section class="hero is-primary is-fullheight">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-centered">
+                    <div class="column is-5-tablet is-5-desktop is-4-widescreen">
+                        <form action="" class="box">
+                            <div class="field">
+                                <label for="" class="label">ایمیل</label>
+                                <div class="control has-icons-left">
+                                    <input type="text" placeholder="e.g. bobsmith@gmail.com" class="input" required>
+                                    <span class="icon is-small is-left">
+                                        <i class="fa fa-envelope"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label for="" class="label">کلمه عبور</label>
+                                <div class="control has-icons-left">
+                                    <input type="password" placeholder="*******" class="input" required>
+                                    <span class="icon is-small is-left">
+                                        <i class="fa fa-lock"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <button class="button is-success is-fullwidth">
+                                    ارسال
+                                </button>
+                            </div>
+                            <hr />
+                            <a href="/account/login">
+                                ورود به حساب
+                            </a>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="field">
-              <label for="" class="label">کلمه عبور</label>
-              <div class="control has-icons-left">
-                <input type="password" placeholder="*******" class="input" required>
-                <span class="icon is-small is-left">
-                  <i class="fa fa-lock"></i>
-                </span>
-              </div>
-            </div>
-            <div class="field">
-              <button class="button is-success is-fullwidth">
-                ارسال
-              </button>
-            </div>
-            <hr />
-             <a  href="/account/login">
-                ورود به حساب
-              </a>
-          </form>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
     <script src="/view-resources/Views/_Bundles/frontend-libs.min.js" asp-append-version="true"></script>
     <script src="/styles/js/bundle.js" asp-append-version="true"></script>
     <script type="text/javascript">
