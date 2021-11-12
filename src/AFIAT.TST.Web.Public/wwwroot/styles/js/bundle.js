@@ -6322,7 +6322,7 @@
 
         var _searchJSON = require("./searchJSON");
 
-        var url = "http://localhost:5080/employees"; //const url = "https://whispering-castle-04462.herokuapp.com/https://ninja-json-server.herokuapp.com/employees";
+        var url = "/api/services/app/Items/GetAll?TitleFilter="; //const url = "https://whispering-castle-04462.herokuapp.com/https://ninja-json-server.herokuapp.com/employees";
 
         function initNavbar() {
             return {
@@ -6399,15 +6399,15 @@
             resultsContainer.classList.add("is-active");
 
             if (searchTerm.length > 0) {
-                fetch(url).then(function (resp) {
+                fetch(url + searchTerm).then(function (resp) {
                     return resp.json();
                 }).then(function (data) {
-                    console.log(data);
+                    console.log(data.result.items);
 
-                    if (data.length > 0) {
-                        data.forEach(function (value, index) {
+                    if (!!data.result.items) {
+                        data.result.items.forEach(function (value, index) {
                             if (value.fullName.search(expression) != -1 || value.position.search(expression) != -1) {
-                                var template = "\n                        <a class=\"search-result\" href=\"employee.html?id=".concat(value.id, "\">\n                            <img class=\"avatar\" src=\"").concat(value.photo, "\" alt=\"\">\n                            <div class=\"meta\">\n                                <span>").concat(value.fullName, "</span>\n                                <span>").concat(value.position, "</span>\n                            </div>\n                        </a>\n                    ");
+                                var template = "\n                        <a class=\"search-result\" href=\"employee.html?id=".concat(value.item.id, "\">\n                            <img class=\"avatar\" src=\"").concat(value.item.imageAdress, "\" alt=\"\">\n                            <div class=\"meta\">\n                                <span>").concat(value.item.title, "</span>\n                                <span>").concat(value.item.title, "</span>\n                            </div>\n                        </a>\n                    ");
                                 console.log(template);
                                 resultsContainer.innerHTML += template;
                             }
@@ -6415,7 +6415,7 @@
                         var results = resultsContainer.querySelectorAll(".search-result");
 
                         if (results.length === 0) {
-                            var placeholder = "\n                      <div class=\"placeholder-wrap\">\n                          <div class=\"placeholder-content has-text-centered\">\n                              <img src=\"/img/illustrations/no-results.svg\" alt=\"\">\n                              <h3>No Matching Results</h3>\n                              <p>Sorry, we couldn't find any matching records. Please try different search terms.</p>\n                          </div>\n                      </div>\n                  ";
+                            var placeholder = "\n                      <div class=\"placeholder-wrap\">\n                          <div class=\"placeholder-content has-text-centered\">\n                              <img src=\"/img/illustrations/no-results.svg\" alt=\"\">\n                              <h3>\u0646\u062A\u06CC\u062C\u0647 \u0627\u06CC \u067E\u06CC\u062F\u0627 \u0646\u0634\u062F</h3>\n                          </div>\n                      </div>\n                  ";
                             resultsContainer.innerHTML += placeholder;
                         }
                     }
