@@ -6402,20 +6402,19 @@
                 fetch(url + searchTerm).then(function (resp) {
                     return resp.json();
                 }).then(function (data) {
-                    console.log(data.result.items);
-
                     if (!!data.result.items) {
-                        data.result.items.forEach(function (value, index) {
-                            if (value.fullName.search(expression) != -1 || value.position.search(expression) != -1) {
-                                var template = "\n                        <a class=\"search-result\" href=\"employee.html?id=".concat(value.item.id, "\">\n                            <img class=\"avatar\" src=\"").concat(value.item.imageAdress, "\" alt=\"\">\n                            <div class=\"meta\">\n                                <span>").concat(value.item.title, "</span>\n                                <span>").concat(value.item.title, "</span>\n                            </div>\n                        </a>\n                    ");
-                                console.log(template);
+                        if (data.result.items.length > 0) {
+                            data.result.items.forEach(function (value, index) {
+                                var template = "\n                        <a class=\"search-result\" href=\"/pages/".concat(value.item.title, "\">\n                            <img class=\"avatar\" src=\"").concat(value.item.imageAdress, "\" alt=\"\">\n                            <div class=\"meta\">\n                                <span>").concat(value.item.title, "</span>\n                                <span>").concat(value.item.title, "</span>\n                            </div>\n                        </a>\n                    ");
                                 resultsContainer.innerHTML += template;
-                            }
-                        });
+                            });
+                        }
+
                         var results = resultsContainer.querySelectorAll(".search-result");
 
                         if (results.length === 0) {
-                            var placeholder = "\n                      <div class=\"placeholder-wrap\">\n                          <div class=\"placeholder-content has-text-centered\">\n                              <img src=\"/img/illustrations/no-results.svg\" alt=\"\">\n                              <h3>\u0646\u062A\u06CC\u062C\u0647 \u0627\u06CC \u067E\u06CC\u062F\u0627 \u0646\u0634\u062F</h3>\n                          </div>\n                      </div>\n                  ";
+                            console.log(results);
+                            var placeholder = "\n                      <div class=\"placeholder-wrap\">\n                          <div class=\"placeholder-content has-text-centered\">\n                              <img src=\"/styles/img/illustrations/no-results.svg\" alt=\"\">\n                              <h3>\u0646\u062A\u06CC\u062C\u0647 \u0627\u06CC \u067E\u06CC\u062F\u0627 \u0646\u0634\u062F</h3>\n                          </div>\n                      </div>\n                  ";
                             resultsContainer.innerHTML += placeholder;
                         }
                     }
