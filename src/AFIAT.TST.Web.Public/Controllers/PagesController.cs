@@ -21,6 +21,7 @@ namespace AFIAT.TST.Web.Public.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult> Show(string id)
         {
+
             var item = await _itemsService.GetPageByTitle(id);
             if (item.Item is null)
             {

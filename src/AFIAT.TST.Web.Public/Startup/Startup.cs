@@ -53,6 +53,7 @@ namespace AFIAT.TST.Web.Public.Startup
             AuthConfigurer.Configure(services, _appConfiguration);
             IdentityRegistrar.Register(services);
             services.AddSignalR();
+            services.AddMemoryCache();
             services.AddCors(options =>
             {
                 options.AddPolicy(DefaultCorsPolicyName, builder =>
@@ -98,7 +99,6 @@ namespace AFIAT.TST.Web.Public.Startup
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             app.UseAbp(); //Initializes ABP framework.
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

@@ -16,6 +16,7 @@ using Abp.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Abp.UI;
 using AFIAT.TST.Storage;
+using Abp.Runtime.Caching;
 
 namespace AFIAT.TST.Pages
 {
@@ -24,20 +25,29 @@ namespace AFIAT.TST.Pages
     {
         private readonly IRepository<Item> _itemRepository;
         private readonly IRepository<Collection, int> _lookup_collectionRepository;
+        private readonly ICacheManager _cacheManager;
 
-        public ItemsAppService(IRepository<Item> itemRepository, IRepository<Collection, int> lookup_collectionRepository)
+        public ItemsAppService(IRepository<Item> itemRepository, IRepository<Collection, int> lookup_collectionRepository, ICacheManager cacheManager)
         {
             _itemRepository = itemRepository;
+            _cacheManager = cacheManager;
             _lookup_collectionRepository = lookup_collectionRepository;
 
         }
         public async Task<GetItemForViewDto> GetPageByTitle(string title)
         {
-            var item = await _itemRepository.FirstOrDefaultAsync(m => m.Title.Equals(title));
+            var item = await _cacheManager
+               .GetCache("pages")
+               .GetAsync(title, async (title) => await GetPageByTitleFromDatabase(title)) as GetItemForViewDto;
             var output = new GetItemForViewDto { Item = ObjectMapper.Map<ItemDto>(item) };
             return output;
         }
-
+        private async Task<GetItemForViewDto> GetPageByTitleFromDatabase(string title)
+        {
+            var item = await _itemRepository.FirstOrDefaultAsync(m => m.Title.Equals(title));
+            var output = new GetItemForViewDto { Item = ObjectMapper.Map<ItemDto>(item) };
+            return  output;
+        }
         public async Task<PagedResultDto<GetItemForViewDto>> GetAll(GetAllItemsInput input)
         {
 
