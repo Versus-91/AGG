@@ -11,7 +11,11 @@ namespace AFIAT.TST.Posts.Dtos
 
         public string IsActive { get; set; }
 
+        public string KeyWords { get; set; }
+
         public int ItemId { get; set; }
+
+        public int? PostTypesId { get; set; }
 
     }
 }

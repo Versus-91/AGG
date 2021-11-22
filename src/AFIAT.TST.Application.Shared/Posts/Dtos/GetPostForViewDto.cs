@@ -6,5 +6,7 @@
 
         public string ItemTitle { get; set; }
 
+        public string PostTypesName { get; set; }
+
     }
 }

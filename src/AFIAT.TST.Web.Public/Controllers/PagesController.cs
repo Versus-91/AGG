@@ -23,7 +23,7 @@ namespace AFIAT.TST.Web.Public.Controllers
         {
 
             var item = await _itemsService.GetPageByTitle(id);
-            if (item.Item is null)
+            if (item is null)
             {
                 return NotFound();
             }

@@ -19,8 +19,7 @@ namespace AFIAT.TST.Pages
 
         Task Delete(EntityDto input);
 
-        Task<PagedResultDto<ItemCollectionLookupTableDto>> GetAllCollectionForLookupTable(GetAllForLookupTableInput input);
-
+        Task<PagedResultDto<ItemSubCollectionLookupTableDto>> GetAllSubCollectionForLookupTable(GetAllForLookupTableInput input);
         Task<GetItemForViewDto> GetPageByTitle(string title);
 
     }

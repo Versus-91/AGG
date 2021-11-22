@@ -118,12 +118,12 @@
   ],
   "NavigationProperties": [
     {
-      "Namespace": "AFIAT.TST.Collections",
-      "ForeignEntityName": "Collection",
+      "Namespace": "AFIAT.TST.SubCollections",
+      "ForeignEntityName": "SubCollection",
       "IdType": "int",
       "IsNullable": false,
-      "PropertyName": "CollectionId",
-      "DisplayPropertyName": "Name",
+      "PropertyName": "SubCollectionId",
+      "DisplayPropertyName": "Title",
       "DuplicationNumber": 0,
       "RelationType": "single",
       "ViewType": "LookupTable"

@@ -1,4 +1,4 @@
-﻿using AFIAT.TST.Collections;
+﻿using AFIAT.TST.SubCollections;
 
 using System;
 using System.Linq;
@@ -24,49 +24,33 @@ namespace AFIAT.TST.Pages
     public class ItemsAppService : TSTAppServiceBase, IItemsAppService
     {
         private readonly IRepository<Item> _itemRepository;
-        private readonly IRepository<Collection, int> _lookup_collectionRepository;
-        private readonly ICacheManager _cacheManager;
+        private readonly IRepository<SubCollection, int> _lookup_subCollectionRepository;
 
-        public ItemsAppService(IRepository<Item> itemRepository, IRepository<Collection, int> lookup_collectionRepository, ICacheManager cacheManager)
+        public ItemsAppService(IRepository<Item> itemRepository, IRepository<SubCollection, int> lookup_subCollectionRepository)
         {
             _itemRepository = itemRepository;
-            _cacheManager = cacheManager;
-            _lookup_collectionRepository = lookup_collectionRepository;
+            _lookup_subCollectionRepository = lookup_subCollectionRepository;
+        }
 
-        }
-        public async Task<GetItemForViewDto> GetPageByTitle(string title)
-        {
-            var item = await _cacheManager
-               .GetCache("pages")
-               .GetAsync(title, async (title) => await GetPageByTitleFromDatabase(title)) as GetItemForViewDto;
-            var output = new GetItemForViewDto { Item = ObjectMapper.Map<ItemDto>(item) };
-            return output;
-        }
-        private async Task<GetItemForViewDto> GetPageByTitleFromDatabase(string title)
-        {
-            var item = await _itemRepository.FirstOrDefaultAsync(m => m.Title.Equals(title));
-            var output = new GetItemForViewDto { Item = ObjectMapper.Map<ItemDto>(item) };
-            return  output;
-        }
         public async Task<PagedResultDto<GetItemForViewDto>> GetAll(GetAllItemsInput input)
         {
 
             var filteredItems = _itemRepository.GetAll()
-                        .Include(e => e.CollectionFk)
+                        .Include(e => e.SubCollectionFk)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.Title.Contains(input.Filter) || e.Description.Contains(input.Filter) || e.ImageAdress.Contains(input.Filter) || e.VideoAddress.Contains(input.Filter))
                         .WhereIf(!string.IsNullOrWhiteSpace(input.TitleFilter), e => e.Title == input.TitleFilter)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.DescriptionFilter), e => e.Description == input.DescriptionFilter)
                         .WhereIf(input.IsActiveFilter.HasValue && input.IsActiveFilter > -1, e => (input.IsActiveFilter == 1 && e.IsActive) || (input.IsActiveFilter == 0 && !e.IsActive))
                         .WhereIf(!string.IsNullOrWhiteSpace(input.ImageAdressFilter), e => e.ImageAdress == input.ImageAdressFilter)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.VideoAddressFilter), e => e.VideoAddress == input.VideoAddressFilter)
-                        .WhereIf(!string.IsNullOrWhiteSpace(input.CollectionNameFilter), e => e.CollectionFk != null && e.CollectionFk.Name == input.CollectionNameFilter);
+                        .WhereIf(!string.IsNullOrWhiteSpace(input.SubCollectionTitleFilter), e => e.SubCollectionFk != null && e.SubCollectionFk.Title == input.SubCollectionTitleFilter);
 
             var pagedAndFilteredItems = filteredItems
                 .OrderBy(input.Sorting ?? "id asc")
                 .PageBy(input);
 
             var items = from o in pagedAndFilteredItems
-                        join o1 in _lookup_collectionRepository.GetAll() on o.CollectionId equals o1.Id into j1
+                        join o1 in _lookup_subCollectionRepository.GetAll() on o.SubCollectionId equals o1.Id into j1
                         from s1 in j1.DefaultIfEmpty()
 
                         select new
@@ -78,7 +62,7 @@ namespace AFIAT.TST.Pages
                             o.ImageAdress,
                             o.VideoAddress,
                             Id = o.Id,
-                            CollectionName = s1 == null || s1.Name == null ? "" : s1.Name.ToString()
+                            SubCollectionTitle = s1 == null || s1.Title == null ? "" : s1.Title.ToString()
                         };
 
             var totalCount = await filteredItems.CountAsync();
@@ -100,7 +84,7 @@ namespace AFIAT.TST.Pages
                         VideoAddress = o.VideoAddress,
                         Id = o.Id,
                     },
-                    CollectionName = o.CollectionName
+                    SubCollectionTitle = o.SubCollectionTitle
                 };
 
                 results.Add(res);
@@ -112,17 +96,22 @@ namespace AFIAT.TST.Pages
             );
 
         }
-
+        public async Task<GetItemForViewDto> GetPageByTitle(string title)
+        {
+            var item = await _itemRepository.FirstOrDefaultAsync(m => m.Title.Equals(title));
+            var output = new GetItemForViewDto { Item = ObjectMapper.Map<ItemDto>(item) };
+            return output;
+        }
         public async Task<GetItemForViewDto> GetItemForView(int id)
         {
             var item = await _itemRepository.GetAsync(id);
 
             var output = new GetItemForViewDto { Item = ObjectMapper.Map<ItemDto>(item) };
 
-            if (output.Item.CollectionId != null)
+            if (output.Item.SubCollectionId != null)
             {
-                var _lookupCollection = await _lookup_collectionRepository.FirstOrDefaultAsync((int)output.Item.CollectionId);
-                output.CollectionName = _lookupCollection?.Name?.ToString();
+                var _lookupSubCollection = await _lookup_subCollectionRepository.FirstOrDefaultAsync((int)output.Item.SubCollectionId);
+                output.SubCollectionTitle = _lookupSubCollection?.Title?.ToString();
             }
 
             return output;
@@ -135,15 +124,15 @@ namespace AFIAT.TST.Pages
 
             var output = new GetItemForEditOutput { Item = ObjectMapper.Map<CreateOrEditItemDto>(item) };
 
-            if (output.Item.CollectionId != null)
+            if (output.Item.SubCollectionId != null)
             {
-                var _lookupCollection = await _lookup_collectionRepository.FirstOrDefaultAsync((int)output.Item.CollectionId);
-                output.CollectionName = _lookupCollection?.Name?.ToString();
+                var _lookupSubCollection = await _lookup_subCollectionRepository.FirstOrDefaultAsync((int)output.Item.SubCollectionId);
+                output.SubCollectionTitle = _lookupSubCollection?.Title?.ToString();
             }
 
             return output;
         }
-
+        [AbpAuthorize(AppPermissions.Pages_Items_Edit)]
         public async Task CreateOrEdit(CreateOrEditItemDto input)
         {
             if (input.Id == null)
@@ -185,30 +174,30 @@ namespace AFIAT.TST.Pages
         }
 
         [AbpAuthorize(AppPermissions.Pages_Items)]
-        public async Task<PagedResultDto<ItemCollectionLookupTableDto>> GetAllCollectionForLookupTable(GetAllForLookupTableInput input)
+        public async Task<PagedResultDto<ItemSubCollectionLookupTableDto>> GetAllSubCollectionForLookupTable(GetAllForLookupTableInput input)
         {
-            var query = _lookup_collectionRepository.GetAll().WhereIf(
+            var query = _lookup_subCollectionRepository.GetAll().WhereIf(
                    !string.IsNullOrWhiteSpace(input.Filter),
-                  e => e.Name != null && e.Name.Contains(input.Filter)
+                  e => e.Title != null && e.Title.Contains(input.Filter)
                );
 
             var totalCount = await query.CountAsync();
 
-            var collectionList = await query
+            var subCollectionList = await query
                 .PageBy(input)
                 .ToListAsync();
 
-            var lookupTableDtoList = new List<ItemCollectionLookupTableDto>();
-            foreach (var collection in collectionList)
+            var lookupTableDtoList = new List<ItemSubCollectionLookupTableDto>();
+            foreach (var subCollection in subCollectionList)
             {
-                lookupTableDtoList.Add(new ItemCollectionLookupTableDto
+                lookupTableDtoList.Add(new ItemSubCollectionLookupTableDto
                 {
-                    Id = collection.Id,
-                    DisplayName = collection.Name?.ToString()
+                    Id = subCollection.Id,
+                    DisplayName = subCollection.Title?.ToString()
                 });
             }
 
-            return new PagedResultDto<ItemCollectionLookupTableDto>(
+            return new PagedResultDto<ItemSubCollectionLookupTableDto>(
                 totalCount,
                 lookupTableDtoList
             );

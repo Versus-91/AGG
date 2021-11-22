@@ -1,4 +1,4 @@
-﻿using AFIAT.TST.Collections;
+﻿using AFIAT.TST.SubCollections;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -22,10 +22,10 @@ namespace AFIAT.TST.Pages
 
         public virtual string VideoAddress { get; set; }
 
-        public virtual int CollectionId { get; set; }
+        public virtual int SubCollectionId { get; set; }
 
-        [ForeignKey("CollectionId")]
-        public Collection CollectionFk { get; set; }
+        [ForeignKey("SubCollectionId")]
+        public SubCollection SubCollectionFk { get; set; }
 
     }
 }

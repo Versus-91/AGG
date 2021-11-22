@@ -76,6 +76,25 @@
         "List": true,
         "CreateOrUpdate": true
       }
+    },
+    {
+      "Name": "KeyWords",
+      "Type": "string",
+      "MaxLength": -1,
+      "MinLength": -1,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0.0,
+        "MaximumValue": 0.0
+      },
+      "Required": false,
+      "Nullable": false,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": true,
+        "List": true,
+        "CreateOrUpdate": true
+      }
     }
   ],
   "NavigationProperties": [
@@ -86,6 +105,17 @@
       "IsNullable": false,
       "PropertyName": "ItemId",
       "DisplayPropertyName": "Title",
+      "DuplicationNumber": 0,
+      "RelationType": "single",
+      "ViewType": "LookupTable"
+    },
+    {
+      "Namespace": "AFIAT.TST.Posts",
+      "ForeignEntityName": "PostTypes",
+      "IdType": "int",
+      "IsNullable": true,
+      "PropertyName": "PostTypesId",
+      "DisplayPropertyName": "Name",
       "DuplicationNumber": 0,
       "RelationType": "single",
       "ViewType": "LookupTable"

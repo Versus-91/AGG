@@ -56,6 +56,8 @@ namespace AFIAT.TST
     {
         public static void CreateMappings(IMapperConfigurationExpression configuration)
         {
+            configuration.CreateMap<CreateOrEditPostTypesDto, PostTypes>().ReverseMap();
+            configuration.CreateMap<PostTypesDto, PostTypes>().ReverseMap();
             configuration.CreateMap<CreateOrEditCommentDto, Comment>().ReverseMap();
             configuration.CreateMap<CommentDto, Comment>().ReverseMap();
             configuration.CreateMap<CreateOrEditPostDto, Post>().ReverseMap();

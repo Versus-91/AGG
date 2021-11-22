@@ -13,7 +13,11 @@ namespace AFIAT.TST.Posts.Dtos
 
         public string IsActiveFilter { get; set; }
 
+        public string KeyWordsFilter { get; set; }
+
         public string ItemTitleFilter { get; set; }
+
+        public string PostTypesNameFilter { get; set; }
 
     }
 }

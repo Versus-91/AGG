@@ -8,7 +8,7 @@ namespace AFIAT.TST.Pages.Dtos
     {
         public CreateOrEditItemDto Item { get; set; }
 
-        public string CollectionName { get; set; }
+        public string SubCollectionTitle { get; set; }
 
     }
 }

@@ -686,9 +686,6 @@ namespace AFIAT.TST.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("CollectionId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime");
 
@@ -710,6 +707,9 @@ namespace AFIAT.TST.Migrations
                     b.Property<long?>("LastModifierUserId")
                         .HasColumnType("bigint");
 
+                    b.Property<int>("SubCollectionId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("TenantId")
                         .HasColumnType("int");
 
@@ -721,7 +721,7 @@ namespace AFIAT.TST.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CollectionId");
+                    b.HasIndex("SubCollectionId");
 
                     b.HasIndex("TenantId");
 
@@ -819,11 +819,17 @@ namespace AFIAT.TST.Migrations
                     b.Property<int>("ItemId")
                         .HasColumnType("int");
 
+                    b.Property<string>("KeyWords")
+                        .HasColumnType("text");
+
                     b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime");
 
                     b.Property<long?>("LastModifierUserId")
                         .HasColumnType("bigint");
+
+                    b.Property<int?>("PostTypesId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("TenantId")
                         .HasColumnType("int");
@@ -836,9 +842,49 @@ namespace AFIAT.TST.Migrations
 
                     b.HasIndex("ItemId");
 
+                    b.HasIndex("PostTypesId");
+
                     b.HasIndex("TenantId");
 
                     b.ToTable("Posts");
+                });
+
+            modelBuilder.Entity("AFIAT.TST.Posts.PostTypes", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TenantId");
+
+                    b.ToTable("PostTypeses");
                 });
 
             modelBuilder.Entity("AFIAT.TST.Storage.BinaryObject", b =>
@@ -2416,13 +2462,13 @@ namespace AFIAT.TST.Migrations
 
             modelBuilder.Entity("AFIAT.TST.Pages.Item", b =>
                 {
-                    b.HasOne("AFIAT.TST.Collections.Collection", "CollectionFk")
+                    b.HasOne("AFIAT.TST.SubCollections.SubCollection", "SubCollectionFk")
                         .WithMany()
-                        .HasForeignKey("CollectionId")
+                        .HasForeignKey("SubCollectionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CollectionFk");
+                    b.Navigation("SubCollectionFk");
                 });
 
             modelBuilder.Entity("AFIAT.TST.Posts.Comment", b =>
@@ -2444,7 +2490,13 @@ namespace AFIAT.TST.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("AFIAT.TST.Posts.PostTypes", "PostTypesFk")
+                        .WithMany()
+                        .HasForeignKey("PostTypesId");
+
                     b.Navigation("ItemFk");
+
+                    b.Navigation("PostTypesFk");
                 });
 
             modelBuilder.Entity("AFIAT.TST.SubCollections.SubCollection", b =>

@@ -10,5 +10,7 @@ namespace AFIAT.TST.Posts.Dtos
 
         public string ItemTitle { get; set; }
 
+        public string PostTypesName { get; set; }
+
     }
 }

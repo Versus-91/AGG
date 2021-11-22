@@ -4,7 +4,7 @@
     {
         public ItemDto Item { get; set; }
 
-        public string CollectionName { get; set; }
+        public string SubCollectionTitle { get; set; }
 
     }
 }

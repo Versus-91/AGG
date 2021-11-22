@@ -21,5 +21,7 @@ namespace AFIAT.TST.Posts
 
         Task<PagedResultDto<PostItemLookupTableDto>> GetAllItemForLookupTable(GetAllForLookupTableInput input);
 
+        Task<PagedResultDto<PostPostTypesLookupTableDto>> GetAllPostTypesForLookupTable(GetAllForLookupTableInput input);
+
     }
 }

@@ -17,7 +17,7 @@ namespace AFIAT.TST.Pages.Dtos
 
         public string VideoAddress { get; set; }
 
-        public int CollectionId { get; set; }
+        public int SubCollectionId { get; set; }
 
     }
 }

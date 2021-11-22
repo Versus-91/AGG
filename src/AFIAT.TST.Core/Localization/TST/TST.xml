@@ -1,6 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
   <texts>
+    <text name="KeyWords">Key words</text>
+    <text name="PostTypesName">Post types name</text>
+    <text name="PickPostTypes">Pick post types</text>
+    <text name="PostTypes">Post types</text>
+    <text name="AFIAT.TST.Posts.PostTypes">PostTypes</text>
+    <text name="PostTypesesHeaderInfo">Post typeses header info</text>
+    <text name="CreateNewPostTypes">Create new post types</text>
+    <text name="EditPostTypes">Edit post types</text>
+    <text name="DeletePostTypes">Delete post types</text>
+    <text name="PostTypeses">Post typeses</text>
+    <text name="SubCollectionTitle">Sub collection title</text>
+    <text name="PickSubCollection">Pick sub collection</text>
     <text name="PostTitle">Post title</text>
     <text name="PickPost">Pick post</text>
     <text name="Comment">Comment</text>
