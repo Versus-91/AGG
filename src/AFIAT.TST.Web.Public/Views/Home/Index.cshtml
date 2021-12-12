@@ -1,6 +1,5 @@
-﻿@using System.Threading.Tasks
+﻿@model Abp.Application.Services.Dto.PagedResultDto<AFIAT.TST.Pages.Dtos.GetItemForViewDto>
 @using AFIAT.TST.Web.Public.Startup
-@using CultureHelper = AFIAT.TST.Localization.CultureHelper
 @{
     ViewBag.CurrentPageName = FrontEndPageNames.Home;
 }
@@ -34,25 +33,24 @@
 <!--Features-->
 <div class="section">
     <div class="container">
+        @foreach (var item in Model.Items)
+        {
+            <div class="py-6 small:mb-10">
+                <div class="columns is-vcentered b-centered-tablet-p">
+                    <div class="column is-6">
+                        <img class="max-w-4 mx-auto is-block" src="/styles/img/illustrations/feature-1.svg" alt="">
+                    </div>
 
-        <div class="has-text-centered py-6">
-            <h2 class="title is-3">جدیدترین پست ها</h2>
-        </div>
-
-        <div class="py-6 small:mb-10">
-            <div class="columns is-vcentered b-centered-tablet-p">
-                <div class="column is-6">
-                    <img class="max-w-4 mx-auto is-block" src="/styles/img/illustrations/feature-1.svg" alt="">
-                </div>
-
-                <div class="column is-5">
-                    <h3 class="title is-4 is-narrow">بیتکوین</h3>
-                    <p class="py-2 max-w-4 text-medium b-centered-tablet-p">سیبیسبسیب سیب سیب تفغع غف  </p>
+                    <div class="column is-5">
+                        <h3 class="title is-4 is-narrow">@item.Item.Title</h3>
+                        <p class="py-2 max-w-4 text-medium b-centered-tablet-p">@item.Item.Description</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
 
-        <div class="py-6 small:mb-10">
+
+        @*<div class="py-6 small:mb-10">
             <div class="columns is-vcentered b-centered-tablet-p">
                 <div class="column is-6 is-hidden-desktop">
                     <img class="max-w-4 mx-auto is-block" src="/styles/img/illustrations/feature-2.svg" alt="">
@@ -102,7 +100,7 @@
                     <p class="py-2 max-w-4 text-medium b-centered-tablet-p">عه منبسی نب ثصحهخقئریستبادذلهسش  حجثص قبمصثق ثصق</p>
                 </div>
             </div>
-        </div>
+        </div>*@
 
     </div>
 </div>
